@@ -15,4 +15,11 @@ RUN apt-get update && \
     apt-get update && \
     apt-get install -y docker-ce-cli
 
+# Добавляем known_hosts для github.com (чтобы не было запроса на подтверждение ключа при первом подключении)
+RUN mkdir -p /home/jenkins/.ssh && \
+    chmod 700 /home/jenkins/.ssh && \
+    ssh-keyscan -t rsa,ecdsa,ed25519 github.com > /home/jenkins/.ssh/known_hosts && \
+    chmod 644 /home/jenkins/.ssh/known_hosts && \
+    chown -R jenkins:jenkins /home/jenkins/.ssh
+
 USER jenkins
