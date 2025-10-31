@@ -14,8 +14,6 @@ services:
       - ${DOCKER_GROUP}
     networks:
       - backend
-    depends_on:
-      - jenkins
 
 networks:
   backend:
