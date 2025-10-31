@@ -1,0 +1,13 @@
+services:
+  jenkins:
+    image: jenkins/jenkins:lts-jdk21
+    container_name: jenkins
+    restart: always
+    volumes:
+      - ./jenkins_home:/var/jenkins_home
+    networks:
+      - backend
+
+networks:
+  backend:
+    external: true

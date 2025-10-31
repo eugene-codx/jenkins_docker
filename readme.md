@@ -1,0 +1,1 @@
+docker build -t my-jenkins-agent-with-docker .

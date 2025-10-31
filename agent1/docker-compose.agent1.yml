@@ -1,0 +1,22 @@
+services:
+  agent:
+    build: .
+    container_name: jenkins-agent1
+    restart: always
+    environment:
+      - JENKINS_URL=http://jenkins:8080
+      - JENKINS_AGENT_NAME=agent1
+      - JENKINS_SECRET=${JENKINS_SECRET_AGENT1}
+    volumes:
+      - ./agent1_home:/home/jenkins
+      - /var/run/docker.sock:/var/run/docker.sock
+    group_add:
+      - ${DOCKER_GROUP}
+    networks:
+      - backend
+    depends_on:
+      - jenkins
+
+networks:
+  backend:
+    external: true
